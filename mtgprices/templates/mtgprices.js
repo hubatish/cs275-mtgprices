@@ -1,3 +1,7 @@
+Router.route('/mtgprices', function () {
+  this.render('mtgprices', {});
+});
+
 Archetypes = new Mongo.Collection("archetypes")
 
 if (Meteor.isClient) {
@@ -12,7 +16,7 @@ if (Meteor.isClient) {
     });*/
     
     // This code only runs on the client
-    Template.body.helpers({
+    Template.mtgprices.helpers({
         archetypes: function () {
             return Archetypes.find({});
         }
