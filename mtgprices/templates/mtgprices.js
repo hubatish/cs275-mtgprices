@@ -1,3 +1,5 @@
+Archetypes = new Mongo.Collection("archetypes")
+
 if (Meteor.isClient) {
     /*
     //Installing this require package is gonna be tough
@@ -11,11 +13,9 @@ if (Meteor.isClient) {
     
     // This code only runs on the client
     Template.body.helpers({
-    tasks: [
-        { text: "This is task 1" },
-        { text: "This is task 2" },
-        { text: "This is task 3" }
-    ]
+        archetypes: function () {
+            return Archetypes.find({});
+        }
     });
 }
 else{    
@@ -29,10 +29,11 @@ else{
             //got back JSON, parse it
             var json = JSON.parse(response.content);
             var deckTypes = json.results.archetypes;
-            console.log("decktypes len:"+deckTypes.length);
+            //console.log("decktypes len:"+deckTypes.length);
             for(var i=0;i<deckTypes.length;i++){
                 //er, do something with this
-                console.log(deckTypes[i].deck.html);
+                Archetypes.insert({name:deckTypes[i].deck.html,link:deckTypes[i].deck.href});
+                //console.log("name"+deckTypes[i].deck.html+"url"+deckTypes[i].deck.href);
             }
     });
 }

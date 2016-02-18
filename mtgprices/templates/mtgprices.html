@@ -1,21 +1,21 @@
 <head>
-  <title>Todo List</title>
+  <title>Deck Archetypes</title>
 </head>
  
 <body>
   <div class="container">
     <header>
-      <h1>Todo List</h1>
+      <h1>Deck Archetypes</h1>
     </header>
  
     <ul>
-      {{#each tasks}}
-        {{> task}}
+      {{#each archetypes}}
+        {{> archetype}}
       {{/each}}
     </ul>
   </div>
 </body>
  
-<template name="task">
-  <li>{{text}}</li>
+<template name="archetype">
+  <li>{{name}}</li>
 </template>
