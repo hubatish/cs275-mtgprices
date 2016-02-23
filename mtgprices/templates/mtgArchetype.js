@@ -1,8 +1,14 @@
-Router.route('/mtgprices', function () {
-  this.render('mtgprices', {});
+var currentArch = "";
+
+Router.route('/mtgSArch/:link', {
+  template: 'mtgSArch',
+  data: function() {
+    currentArch = this.params.link;
+    console.log(currentArch);
+  }
 });
 
-Archetypes = new Mongo.Collection("archetypes")
+Archetype = new Mongo.Collection("archetype")
 
 if (Meteor.isClient) {
     /*
@@ -16,17 +22,17 @@ if (Meteor.isClient) {
     });*/
 
     // This code only runs on the client
-    Template.mtgprices.helpers({
-        archetypes: function () {
-            return Archetypes.find({});
+    Template.mtgSArch.helpers({
+        archetype: function () {
+            return Archetype.find({});
         }
     });
 }
 else{
-    //Clear old collection
-    Archetypes.remove({});
+/*    //Clear old collection
+    Archetype.remove({});
     //Make call to kimono and get all generic top8 info
-    HTTP.call('GET',"https://www.kimonolabs.com/api/9utlkdbm?apikey=oUcgS30F1zkYScmzLUrafSwZ6SjPUTZp",
+    HTTP.call('GET', "http://" + currentArch,
         {},
         function(err, response) {
             if(err){
@@ -34,14 +40,12 @@ else{
             }
             //got back JSON, parse it
             var json = JSON.parse(response.content);
-            var deckTypes = json.results.archetypes;
-            //console.log("decktypes len:"+deckTypes.length);
+            console.log(json.results);
 
             //Get new collection
             for(var i=0;i<deckTypes.length;i++){
                 //er, do something with this
-                Archetypes.insert({name:deckTypes[i].deck.html,link:deckTypes[i].deck.href});
                 //console.log("name"+deckTypes[i].deck.html+"url"+deckTypes[i].deck.href);
             }
-    });
+    });*/
 }
