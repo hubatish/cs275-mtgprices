@@ -2,12 +2,12 @@ var currentArch = "";
 
 Router.route('/mtgSArch/:link', function () {
   this.render("mtgSArch");
-  var params = this.params; // { _id: "5" }
+  /*var params = this.params; // { _id: "5" }
   currentArch = params.link; // "5"
   console.log("got param: "+currentArch);
   if(Meteor.isServer){
       console.log("running server code here");
-  }
+  }*/
 });
 
 /*{
@@ -31,6 +31,8 @@ if (Meteor.isClient) {
             console.log("Respone:"+response);
     });*/
 
+    Meteor.subscribe("archetype");
+
     // This code only runs on the client
     Template.mtgSArch.helpers({
         archetype: function () {
@@ -39,6 +41,11 @@ if (Meteor.isClient) {
     });
 }
 else{
+    Archetype.insert({"hello":"world"});
+    Meteor.publish("archetype",function(){
+       Archetype.insert({"hello":"more"});
+       return Archetype.find({});
+    });
     console.log("server getting data: "+currentArch);
 /*    //Clear old collection
     Archetype.remove({});
