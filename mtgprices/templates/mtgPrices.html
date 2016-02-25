@@ -5,9 +5,12 @@
 <body></body>
 
 <template name="mtgprices">
-    {{> Nav}}
+  <div class="nav">
+      {{> Nav}}
+  </div>
 <br>
     <div class="container">
+      <div class="body">
       <header>
         <h1>Deck Archetypes</h1>
       </header>
@@ -17,9 +20,10 @@
           {{> archetype1}}
         {{/each}}
       </ul>
+      </div>
     </div>
 </template>
 
 <template name="archetype1">
-      <li><a href="/mtgSArch">{{name}}</a></li>
+      <li><a href="/mtgSArch/{{name}}">{{name}}</a></li>
 </template>

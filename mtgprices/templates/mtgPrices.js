@@ -5,6 +5,8 @@ Router.route('/mtgprices', function () {
 Archetypes = new Mongo.Collection("archetypes")
 
 if (Meteor.isClient) {
+    Meteor.subscribe("mtgPricesSubscribe");
+
     // This code only runs on the client
     Template.mtgprices.helpers({
         archetypes: function () {
@@ -29,6 +31,10 @@ else{
       }
     }), function(errorObject){
       console.log("The read failed: " + errorObject.code);
+    });
+
+    Meteor.publish("mtgPricesSubscribe", function() {
+       return Archetypes.find({});
     });
 
 

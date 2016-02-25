@@ -37,8 +37,6 @@ if (Meteor.isClient) {
             console.log("Respone:"+response);
     });*/
 
-    //Meteor.subscribe("archSub");
-
     // This code only runs on the client
     Template.mtgSArch.helpers({
         archGetD: function () {
@@ -47,7 +45,7 @@ if (Meteor.isClient) {
     });
 }
 else{
-     //Clear old collection (problem: only gets called on server start...)
+    //Clear old collection (problem: only gets called on server start...)
     Archetype.remove({});
 
     Meteor.publish("archSub",function(link){
