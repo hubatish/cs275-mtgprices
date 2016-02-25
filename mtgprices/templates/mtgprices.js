@@ -5,16 +5,6 @@ Router.route('/mtgprices', function () {
 Archetypes = new Mongo.Collection("archetypes")
 
 if (Meteor.isClient) {
-    /*
-    //Installing this require package is gonna be tough
-    var request = require("request");
-
-    request("https://www.kimonolabs.com/api/9utlkdbm?apikey=oUcgS30F1zkYScmzLUrafSwZ6SjPUTZp",
-        function(err, response, body) {
-            console.log(body);
-            console.log("Respone:"+response);
-    });*/
-
     // This code only runs on the client
     Template.mtgprices.helpers({
         archetypes: function () {
@@ -23,25 +13,35 @@ if (Meteor.isClient) {
     });
 }
 else{
-    //Clear old collection
-    Archetypes.remove({});
-    //Make call to kimono and get all generic top8 info
-    HTTP.call('GET',"https://www.kimonolabs.com/api/9utlkdbm?apikey=oUcgS30F1zkYScmzLUrafSwZ6SjPUTZp",
-        {},
-        function(err, response) {
-            if(err){
-                console.log(err);
-            }
-            //got back JSON, parse it
-            var json = JSON.parse(response.content);
-            var deckTypes = json.results.archetypes;
-            //console.log("decktypes len:"+deckTypes.length);
 
-            //Get new collection
-            for(var i=0;i<deckTypes.length;i++){
-                //er, do something with this
-                Archetypes.insert({name:deckTypes[i].deck.html,link:deckTypes[i].deck.href});
-                //console.log("name"+deckTypes[i].deck.html+"url"+deckTypes[i].deck.href);
-            }
+    var Firebase = Npm.require("firebase"); // This is the syntax for setting up a npm package in meteor
+    //loop through the 0
+    var mtgtop2Cnt = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest");
+    mtgtop2Cnt.on("value", function(snapshot){
+      var temp = snapshot.val();
+      var count = temp.count;
+      for (var i = 0; i < count; i++){
+        var mtgtop2Ref = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest/results/archetypes/" + i + "/deck");
+        mtgtop2Ref.on("value", function(snapshot){
+          var decks = snapshot.val();
+          var deckType = decks.html;
+          console.log("deckType: " + deckType);
+        }, function(errorObject){
+          console.log("The read failed: " + errorObject.code);
+        });
+      }
+    }, function(errorObject){
+      console.log("The read failed: " + errorObject.code);
     });
+
+
+
+    //Need to queue for top8 decks
+      //Still some errors here, need to find out how to use Meteor.bindEnvironment
+      /*
+      Archetypes.insert({
+        name: deckType,
+        link: deckLink
+      });
+      */
 }
