@@ -15,25 +15,21 @@ if (Meteor.isClient) {
 else{
 
     var Firebase = Npm.require("firebase"); // This is the syntax for setting up a npm package in meteor
-    //loop through the 0
-    var mtgtop2Cnt = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest");
-    mtgtop2Cnt.on("value", function(snapshot){
-      var temp = snapshot.val();
-      var count = temp.count;
-      for (var i = 0; i < count; i++){
-        var mtgtop2Ref = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest/results/archetypes/" + i + "/deck");
-        mtgtop2Ref.on("value", function(snapshot){
-          var decks = snapshot.val();
-          var deckType = decks.html;
-          console.log("deckType: " + deckType);
-        }, function(errorObject){
-          console.log("The read failed: " + errorObject.code);
-        });
+    var mtgtop2Ref = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest/results/archetypes/");
+    mtgtop2Ref.on("value", Meteor.bindEnvironment(function(snapshot){
+      var decks = snapshot.val();
+      //console.log(decks);
+      for (var i = 0; i < decks.length; i++){
+        var deckType = decks[i].deck.html;
+        var deckLink = decks[i].deck.href;
+        Archetypes.insert({
+          name: deckType,
+          link: deckLink
+        })
       }
-    }, function(errorObject){
+    }), function(errorObject){
       console.log("The read failed: " + errorObject.code);
     });
-
 
 
     //Need to queue for top8 decks
