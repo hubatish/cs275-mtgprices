@@ -31,7 +31,7 @@ if (Meteor.isClient) {
             console.log("Respone:"+response);
     });*/
 
-    Meteor.subscribe("archSub");
+    Meteor.subscribe("mtgArchetypeSubscribe");
 
     // This code only runs on the client
     Template.mtgSArch.helpers({
@@ -42,7 +42,7 @@ if (Meteor.isClient) {
 }
 else{
     Archetype.insert({"hello":"world"});
-    Meteor.publish("archSub",function(){
+    Meteor.publish("mtgArchetypeSubscribe",function(){
        Archetype.insert({"hello":"more"});
        return Archetype.find({});
     });
