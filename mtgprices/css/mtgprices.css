@@ -24,6 +24,16 @@ body {
   background: white;
 }
 
+.container-head {
+  margin: 0 auto;
+  max-width: 600px;
+  min-height: 200px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #eee
+}
+
 header {
   background: #d2edf4;
   background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);

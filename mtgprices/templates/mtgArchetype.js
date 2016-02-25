@@ -1,12 +1,22 @@
 var currentArch = "";
 
-Router.route('/mtgSArch/:link', {
+Router.route('/mtgSArch', function () {
+  this.render('mtgSArch', {});
+  /*var params = this.params; // { _id: "5" }
+  currentArch = params.link; // "5"
+  console.log("got param: "+currentArch);
+  if(Meteor.isServer){
+      console.log("running server code here");
+  }*/
+});
+
+/*{
   template: 'mtgSArch',
   data: function() {
     currentArch = this.params.link;
     console.log(currentArch);
   }
-});
+});*/
 
 Archetype = new Mongo.Collection("archetype")
 
@@ -21,14 +31,22 @@ if (Meteor.isClient) {
             console.log("Respone:"+response);
     });*/
 
+    Meteor.subscribe("archSub");
+
     // This code only runs on the client
     Template.mtgSArch.helpers({
-        archetype: function () {
+        archGetD: function () {
             return Archetype.find({});
         }
     });
 }
 else{
+    Archetype.insert({"hello":"world"});
+    Meteor.publish("archSub",function(){
+       Archetype.insert({"hello":"more"});
+       return Archetype.find({});
+    });
+    console.log("server getting data: "+currentArch);
 /*    //Clear old collection
     Archetype.remove({});
     //Make call to kimono and get all generic top8 info
