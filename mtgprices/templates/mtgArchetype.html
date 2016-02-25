@@ -13,11 +13,13 @@
       </header>
 
       <ul>
-        {{> deckName}}
+        {{#each archGetD}}
+          {{> deckName}}
+        {{/each}}
       </ul>
     </div>
 </template>
 
 <template name="deckName">
-      <li><a href="/mtgSArch">wordz</a></li>
+      <li><a href="/mtgSArch">{{Home}}</a></li>
 </template>

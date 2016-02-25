@@ -1,7 +1,7 @@
 var currentArch = "";
 
-Router.route('/mtgSArch/:link', function () {
-  this.render("mtgSArch");
+Router.route('/mtgSArch', function () {
+  this.render('mtgSArch', {});
   /*var params = this.params; // { _id: "5" }
   currentArch = params.link; // "5"
   console.log("got param: "+currentArch);
@@ -31,18 +31,18 @@ if (Meteor.isClient) {
             console.log("Respone:"+response);
     });*/
 
-    Meteor.subscribe("archetype");
+    Meteor.subscribe("archSub");
 
     // This code only runs on the client
     Template.mtgSArch.helpers({
-        archetype: function () {
+        archGetD: function () {
             return Archetype.find({});
         }
     });
 }
 else{
     Archetype.insert({"hello":"world"});
-    Meteor.publish("archetype",function(){
+    Meteor.publish("archSub",function(){
        Archetype.insert({"hello":"more"});
        return Archetype.find({});
     });
