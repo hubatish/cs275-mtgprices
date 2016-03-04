@@ -1,31 +1,37 @@
-<head>
-  <title>basic</title>
-</head>
-
+<head> 
+    <title>Frugal Bard's - Home</title>     
+</head> 
 <body>
-</body>
-
-<template name="Home">
-  {{> Nav}}
-
-<br>
-  <div class="container-head">
-    <h1>Frugal Bard's Decks and Cards</h1>
-
-    <p>
-      {{title}}
-    </p>
-
-  </div>
-</template>
-
-<template name="Nav">
-  <ul>
-    <li>
-      <a href="/">Home</a>
-    </li>
-    <li>
-      <a href="/mtgprices">Deck Archetypes</a>
-    </li>
-  </ul>
+</body> 
+<template name="Home"> 
+    <br> 
+    <div class="container"> 
+        <div class="head"> 
+            <h1><a href="/">Frugal Bard's Decks and Cards</a></h1> 
+            <p> 
+        {{title}}</p> 
+        </div>         
+    </div>     
+    <div class="container"> 
+        <div class="body"> 
+            {{> HomeNav}}
+</div>         
+    </div>     
+</template> 
+<template name="HomeNav"> 
+    <ul> 
+        <li> 
+            <a href="/mtgprices">Deck Archetypes</a> 
+        </li>         
+    </ul>     
+</template> 
+<template name="Nav"> 
+    <ul> 
+        <li> 
+            <a href="/">Home</a> 
+        </li>         
+        <li> 
+            <a href="/mtgprices">Deck Archetypes</a> 
+        </li>         
+    </ul>     
 </template>
