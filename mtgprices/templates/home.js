@@ -1,4 +1,4 @@
 Router.route('/', function () {
   // render the Home template with a custom data context
-  this.render('Home', {data: {title: 'Welcome!'}});
+  this.render('Home', {});
 });

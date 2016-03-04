@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'eastmarketregular';
+    src: url('/fonts/EastMarket-webfont.eot'),
+        url('/fonts/EastMarket-webfont.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/EastMarket-webfont.woff') format('woff'),
+        url('/fonts/EastMarket-webfont.ttf') format('truetype'),
+        url('/fonts/EastMarket-webfont.svg#eastmarketregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'elementarygothic';
+    src: url('/fonts/Elementary-Gothic-Bookhand.ttf.eot'),
+        url('/fonts/Elementary-Gothic-Bookhand.ttf.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/Elementary-Gothic-Bookhand.ttf.woff') format('woff'),
+        url('/fonts/Elementary-Gothic-Bookhand.ttf') format('truetype'),
+        url('/fonts/Elementary-Gothic-Bookhand.ttf.svg#eastmarketregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
