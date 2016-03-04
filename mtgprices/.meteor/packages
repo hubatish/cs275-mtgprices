@@ -20,3 +20,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 http
 json
 iron:router
+peerlibrary:xml2js

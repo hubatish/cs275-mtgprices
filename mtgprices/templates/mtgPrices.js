@@ -16,22 +16,27 @@ if (Meteor.isClient) {
 }
 else{
 
-    var Firebase = Npm.require("firebase"); // This is the syntax for setting up a npm package in meteor
-    var mtgtop2Ref = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest/results/archetypes/");
-    mtgtop2Ref.on("value", Meteor.bindEnvironment(function(snapshot){
-      var decks = snapshot.val();
-      //console.log(decks);
-      for (var i = 0; i < decks.length; i++){
-        var deckType = decks[i].deck.html;
-        var deckLink = decks[i].deck.href;
-        Archetypes.insert({
-          name: deckType,
-          link: deckLink
-        })
-      }
-    }), function(errorObject){
-      console.log("The read failed: " + errorObject.code);
-    });
+    var listOfArchetypes = Archetypes.find({}).fetch();
+    if(listOfArchetypes.length==0){ //TODO: Check this based on date
+    
+        //only populate db if we no data already exists
+        var Firebase = Npm.require("firebase"); // This is the syntax for setting up a npm package in meteor
+        var mtgtop2Ref = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest/results/archetypes/");
+        mtgtop2Ref.on("value", Meteor.bindEnvironment(function(snapshot){
+        var decks = snapshot.val();
+        //console.log(decks);
+        for (var i = 0; i < decks.length; i++){
+            var deckType = decks[i].deck.html;
+            var deckLink = decks[i].deck.href;
+            Archetypes.insert({
+            name: deckType,
+            link: deckLink
+            })
+        }
+        }), function(errorObject){
+        console.log("The read failed: " + errorObject.code);
+        });
+    }
 
     Meteor.publish("mtgPricesSubscribe", function() {
        return Archetypes.find({});
