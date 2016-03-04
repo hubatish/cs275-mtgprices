@@ -27,6 +27,7 @@ else{
 
     //Todo list:
     //Need to crawl the 3rd one
+    //Then put the
     mtgDecks.on("value", Meteor.bindEnvironment(function(snapshot){
       var deckList = snapshot.val();
       for (var i = 0; i < deckList.length; i++){
