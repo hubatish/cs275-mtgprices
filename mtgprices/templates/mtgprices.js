@@ -19,7 +19,6 @@ if (Meteor.isClient) {
 }
 else{
   var listOfArchetypes = Archetypes.find({}).fetch();
-  console.log(listOfArchetypes.length)
   if(listOfArchetypes.length==0){ //TODO: Check this based on date
     var Firebase = Npm.require("firebase"); // This is the syntax for setting up a npm package in meteor
     var mtgArchTypes = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest/results/archetypes/");
