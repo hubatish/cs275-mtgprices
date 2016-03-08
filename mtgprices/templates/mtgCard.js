@@ -1,16 +1,16 @@
 Cards = new Mongo.Collection("Cards");
 
-getCardPrice = function(cardName, callback){
+getCardPrice = function(cardName, callback) {
     //TODO: cache this card in a database & return it if it exists
     var matchingCards = Cards.find({name:cardName}).fetch();
-    if(matchingCards.length==0){
+    if (matchingCards.length == 0) {
         //TODO: Parse out spaces from name, replace with %20
         var baseURL = "http://partner.tcgplayer.com/x3/phl.asmx/p?pk=JOHNWANG&s=&p=";
 
         HTTP.call('GET', baseURL + cardName,//"Flameborn%20Viron",
                   {},
                   function(err, response) {
-                      if(err){
+                      if (err) {
                           console.log(err);
                       }
                       //got back XML, parse it
@@ -27,7 +27,7 @@ getCardPrice = function(cardName, callback){
                       });
                   });
     }
-    else{
+    else {
         //console.log("Cached"+JSON.stringify(matchingCards[0]));
         callback(matchingCards[0].price);
     }

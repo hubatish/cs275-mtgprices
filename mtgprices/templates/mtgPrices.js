@@ -1,4 +1,4 @@
-Router.route('/mtgprices', function () {
+Router.route('/mtgprices', function() {
     this.render('mtgprices', {});
 });
 
@@ -12,14 +12,14 @@ if (Meteor.isClient) {
     Meteor.subscribe("mtgPricesSubscribe");
     // This code only runs on the client
     Template.mtgprices.helpers({
-        archetypes: function () {
+        archetypes: function() {
             return Archetypes.find({});
         }
     });
 }
-else{
+else {
     var listOfArchetypes = Archetypes.find({}).fetch();
-    if(listOfArchetypes.length == 0){ //TODO: Check this based on date
+    if (listOfArchetypes.length == 0) { //TODO: Check this based on date
 
         var Firebase = Npm.require("firebase"); // This is the syntax for setting up a npm package in meteor
         var mtgArchTypes = new Firebase("https://dazzling-torch-1073.firebaseio.com/kimono/api/9utlkdbm/latest/results/archetypes/");
@@ -28,7 +28,7 @@ else{
         //Todo list:
         //Need to crawl the 3rd one
         //Then put the
-        mtgDecks.on("value", Meteor.bindEnvironment(function(snapshot){
+        mtgDecks.on("value", Meteor.bindEnvironment(function(snapshot) {
             var deckList = snapshot.val();
             for (var i = 0; i < deckList.length; i++){
                 var deckName = deckList[i].deck.text;
@@ -44,7 +44,7 @@ else{
             console.log("The read failed: " + errorObject.code);
         });
 
-        mtgArchTypes.on("value", Meteor.bindEnvironment(function(snapshot){
+        mtgArchTypes.on("value", Meteor.bindEnvironment(function(snapshot) {
             var arch = snapshot.val();
             for (var i = 0; i < arch.length; i++){
                 var deckType = arch[i].deck.html;
