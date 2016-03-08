@@ -11,11 +11,12 @@ Router.route('/mtgSArch', function () {
     }
 });
 */
-Router.route('/mtgSArch/:link',{ // Route takes a single parameter
-    name: 'mtgSArch',
-    waitOn: function(){
-        return Meteor.subscribe('archSub', this.params.link);
-    }
+Router.route('/mtgSArch/:link', {
+        // Route takes a single parameter
+        name: 'mtgSArch',
+        waitOn: function() {
+            return Meteor.subscribe('archSub', this.params.link);
+        }
 });
 
 /*
@@ -42,8 +43,8 @@ if (Meteor.isClient) {
     });*/
 
     // This code only runs on the client
-    Template.mtgSArch.helpers({
-        archGetD: function () {
+    Template.mtgSArch.helpers( {
+        archGetD: function() {
             return Archetype.find({});
         }
     });
