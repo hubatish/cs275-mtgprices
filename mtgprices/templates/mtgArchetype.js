@@ -46,10 +46,10 @@ if (Meteor.isClient) {
 }
 else{
     //Clear old collection (problem: only gets called on server start...)
-    Archetype.remove({});
 
     Meteor.publish("archSub",function(link){
-       Archetype.insert({"hello":"more"+link});
+        Archetype.remove({});
+        Archetype.insert({"hello":"more" + link});
        //TODO: Make call to kimono/firelab to get data based off the link
 /*       var currentArch = ""
            //Make call to kimono and get all generic top8 info
@@ -72,6 +72,6 @@ else{
        return Archetype.find({});
     });
     console.log("server getting data: "+currentArch);
-/*    
+/*
 */
 }
