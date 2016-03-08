@@ -1,28 +1,32 @@
 var currentArch = "";
 
-/*Router.route('/mtgSArch', function () {
-  this.render('mtgSArch', {});
-  /*var params = this.params; // { _id: "5" }
-  currentArch = params.link; // "5"
-  console.log("got param: "+currentArch);
-  if(Meteor.isServer){
-      console.log("running server code here");
-  }
-});*/
+/*
+Router.route('/mtgSArch', function () {
+    this.render('mtgSArch', {});
+    var params = this.params; // { _id: "5" }
+    currentArch = params.link; // "5"
+    console.log("got param: "+currentArch);
+    if(Meteor.isServer){
+        console.log("running server code here");
+    }
+});
+*/
 Router.route('/mtgSArch/:link',{ // Route takes a single parameter
-  name: 'mtgSArch',
-  waitOn: function(){
-    return Meteor.subscribe('archSub', this.params.link);
-  }
+    name: 'mtgSArch',
+    waitOn: function(){
+        return Meteor.subscribe('archSub', this.params.link);
+    }
 });
 
-/*{
-  template: 'mtgSArch',
-  data: function() {
-    currentArch = this.params.link;
-    console.log(currentArch);
-  }
-});*/
+/*
+{
+    template: 'mtgSArch',
+    data: function() {
+        currentArch = this.params.link;
+        console.log(currentArch);
+    }
+});
+*/
 
 Archetype = new Mongo.Collection("archetype")
 
@@ -44,14 +48,14 @@ if (Meteor.isClient) {
         }
     });
 }
-else{
+else {
     //Clear old collection (problem: only gets called on server start...)
     Archetype.remove({});
 
     Meteor.publish("archSub",function(link){
-       Archetype.insert({"hello":"more"+link});
+        Archetype.insert({"hello":"more" + link});
        //TODO: Make call to kimono/firelab to get data based off the link
-/*       var currentArch = ""
+       /*       var currentArch = ""
            //Make call to kimono and get all generic top8 info
            HTTP.call('GET', "http://" + currentArch,
                 {},
@@ -69,9 +73,7 @@ else{
                         //console.log("name"+deckTypes[i].deck.html+"url"+deckTypes[i].deck.href);
                     }
            });*/
-       return Archetype.find({});
+        return Archetype.find({});
     });
-    console.log("server getting data: "+currentArch);
-/*    
-*/
+    console.log("server getting data: " + currentArch);
 }

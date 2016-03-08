@@ -1,29 +1,29 @@
 <head>
-  <title>Deck Archetypes</title>
+    <title>Deck Archetypes</title>
 </head>
 
 <body></body>
 
 <template name="mtgprices">
-  <div class="nav">
-      {{> Nav}}
-  </div>
-<br>
+    <div class="nav">
+        {{> Nav}}
+    </div>
+    <br>
     <div class="container">
-      <div class="body">
-      <header>
-        <h1>Deck Archetypes</h1>
-      </header>
+        <div class="body">
+            <header>
+                <h1>Deck Archetypes</h1>
+            </header>
 
-      <ul>
-        {{#each archetypes}}
-          {{> archetype1}}
-        {{/each}}
-      </ul>
-      </div>
+            <ul>
+                {{#each archetypes}}
+                    {{> archetype1}}
+                {{/each}}
+            </ul>
+        </div>
     </div>
 </template>
 
 <template name="archetype1">
-      <li><a href="/mtgSArch/{{name}}">{{name}}</a></li>
+    <li><a href="/mtgSArch/{{name}}">{{name}}</a></li>
 </template>
