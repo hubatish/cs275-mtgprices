@@ -1,5 +1,7 @@
 <head>
     <title>Frugal Bard's - Home</title>
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="navbar-fixed-top.css" rel="stylesheet">
 </head>
 
 <body>
@@ -7,11 +9,14 @@
 
 <template name="Home">
     <br>
-    <div class="container">
+    <div class="container ">
         <div class="head">
             <h1><a href="/">Frugal Bard's Decks and Cards</a></h1>
             <div class="sub">
               <p>Welcome!</p>
+            </div>
+            <div class="sub">
+              <a href="/mtgprices">Deck Archetypes</a>
             </div>
         </div>
     </div>
@@ -21,18 +26,9 @@
         </div>
     </div>
 </template>
+
 <template name="HomeNav">
     <ul>
-        <li>
-            <a href="/mtgprices">Deck Archetypes</a>
-        </li>
-    </ul>
-</template>
-<template name="Nav">
-    <ul>
-        <li>
-            <a href="/">Home</a>
-        </li>
         <li>
             <a href="/mtgprices">Deck Archetypes</a>
         </li>

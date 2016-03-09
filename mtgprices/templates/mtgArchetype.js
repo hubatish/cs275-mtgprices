@@ -9,12 +9,12 @@ var currentArch = "";
       console.log("running server code here");
   }
 });*/
-Router.route('/mtgSArch/:link',{ // Route takes a single parameter
+/*Router.route('/mtgSArch/:link',{ // Route takes a single parameter
   name: 'mtgSArch',
   waitOn: function(){
     return Meteor.subscribe('archSub', this.params.link);
   }
-});
+});*/
 
 /*{
   template: 'mtgSArch',
@@ -72,6 +72,6 @@ else{
        return Archetype.find({});
     });
     console.log("server getting data: "+currentArch);
-/*    
+/*
 */
 }
