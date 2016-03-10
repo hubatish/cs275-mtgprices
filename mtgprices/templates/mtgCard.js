@@ -11,7 +11,10 @@ getCardPrice = function(cardName, callback) {
                   {},
                   function(err, response) {
                       if (err) {
-                          console.log(err);
+                          //console.log(err);
+                          console.log("Product not found: " + cardName);
+                          callback(0);
+                          return;
                       }
                       //got back XML, parse it
                       xml2js.parseString(response.content, function (jsError, jsResult) {
@@ -32,4 +35,3 @@ getCardPrice = function(cardName, callback) {
         callback(matchingCards[0].price);
     }
 };
-
