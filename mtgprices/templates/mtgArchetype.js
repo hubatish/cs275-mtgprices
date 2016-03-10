@@ -1,33 +1,5 @@
 var currentArch = "";
 
-/*
-Router.route('/mtgSArch', function () {
-    this.render('mtgSArch', {});
-    var params = this.params; // { _id: "5" }
-    currentArch = params.link; // "5"
-    console.log("got param: "+currentArch);
-    if(Meteor.isServer){
-        console.log("running server code here");
-    }
-});
-*/
-Router.route('/mtgSArch/:link', {
-        // Route takes a single parameter
-        name: 'mtgSArch',
-        waitOn: function() {
-            return Meteor.subscribe('archSub', this.params.link);
-        }
-});
-
-/*
-{
-    template: 'mtgSArch',
-    data: function() {
-        currentArch = this.params.link;
-        console.log(currentArch);
-    }
-});
-*/
 
 //purely for getting info to the client on this page
 CArchetype = new Mongo.Collection("CArchetype")
