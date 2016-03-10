@@ -17,22 +17,30 @@ if (Meteor.isClient) {
             return CDeck.find({});
         }
     });
+    Template.mtgSDeck.onRendered(function () {
+        console.log("Rendered");
+        tappedOut();
+    });
 }
 else {
     Meteor.publish("deckSub",function(link) {
-        link = "http://mtgtop8.com/event?e=11630&d=266244&f=MO"; //hard coded example
-        //Clear old collection (problem: only gets called on server start...)
-        CDeck.remove({});
         //console.log("looking at name: "+link);
+        link = "http://mtgtop8.com/event?e=11630&d=266244&f=MO"; //hard coded example
+
+        CDeck.remove({});
         var allDecks = Decks.find({link:link}).fetch();
-        //console.log("uh.. returend: "+JSON.stringify(allDecks));
-        //console.log("publish called, results reterune: "+allDecks.length);
+
+        //Should only return 1
+        //console.log("Got back this many decks for query: "+allDecks.length);
         var deck = allDecks[0];
         for(var i=0;i<deck.cards.length;i++){
-            console.log("c:"+deck.cards[i].name);
+            //console.log("c:"+deck.cards[i].name);
             CDeck.insert(deck.cards[i]);
         }
-        //console.log("deck: "+JSON.stringify(allDecks[i]));
+        if(Meteor.isClient){
+            console.log("IA m client & publsihign?? ");
+            tappedOut();
+        }
         return CDeck.find({});
     });
 }
