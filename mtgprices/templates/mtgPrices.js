@@ -34,9 +34,14 @@ else{
             var deckList = snapshot.val();
             for (var i = 0; i < deckList.length; i++){
                 var deckName = deckList[i].deck.text;
+                var deckNameEncoded = encodeURIComponent();
                 var deckLink = deckList[i].deck.href;
+
+                var deckID = "foo";
+
                 Decks.insert({
                     name: deckName,
+                    nameEncoded: deckNameEncoded,
                     link: deckLink
                     //cards: [name of cards]
                     //avg price: $$
@@ -49,18 +54,21 @@ else{
         mtgArchTypes.on("value", Meteor.bindEnvironment(function(snapshot) {
             var arch = snapshot.val();
             for (var i = 0; i < arch.length; i++){
-                var deckType = arch[i].deck.html;
-                var deckTypeEncoded = encodeURIComponent(deckType);
-                var deckLink = arch[i].deck.href;
-                var linkArray = _.pluck( Decks.find( { name: deckType } ).fetch(), '_id' );
+                var archetypeName = arch[i].deck.html;
+                var archetypeNameEncoded = encodeURIComponent(archetypeName);
+                var archetypeLink = arch[i].deck.href;
+                var archetypeDecks = _.pluck( Decks.find( { name: archetypeName } ).fetch(), '_id' );
+
+                var archetypeID = "foo";
+
                 Archetypes.insert({
-                    name: deckType,
-                    url: deckTypeEncoded,
-                    link: deckLink,
-                    deck: linkArray
+                    name: archetypeName,
+                    nameEncoded: archetypeNameEncoded,
+                    link: archetypeLink,
+                    decks: archetypeDecks
                     //avg price
                 });
-                console.log("inserting: " + deckType + ", " + deckTypeEncoded);
+                console.log("inserting: " + archetypeName + ", " + archetypeNameEncoded, + ", " + archetypeLink);
             }
         }), function(errorObject){
             console.log("The read failed: " + errorObject.code);
@@ -70,5 +78,4 @@ else{
     Meteor.publish("mtgPricesSubscribe", function() {
         return Archetypes.find({});
     });
-
 }
