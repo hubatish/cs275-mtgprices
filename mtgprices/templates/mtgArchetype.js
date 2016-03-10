@@ -1,7 +1,8 @@
 var currentArch = "";
 
 
-Archetype = new Mongo.Collection("archetype")
+//purely for getting info to the client on this page
+CArchetype = new Mongo.Collection("CArchetype")
 
 if (Meteor.isClient) {
     /*
@@ -17,16 +18,24 @@ if (Meteor.isClient) {
     // This code only runs on the client
     Template.mtgSArch.helpers( {
         archGetD: function() {
-            return Archetype.find({});
+            return CArchetype.find({});
         }
     });
 }
 else {
-    //Clear old collection (problem: only gets called on server start...)
-    Archetype.remove({});
-
     Meteor.publish("archSub",function(link) {
-        Archetype.insert({"hello":"more" + link});
+        //Clear old collection (problem: only gets called on server start...)
+        CArchetype.remove({});
+        //Archetype.insert({"hello":"more" + link});
+        //console.log("looking at name: "+link);
+        var allDecks = Decks.find({name:link}).fetch();
+        //console.log("uh.. returend: "+JSON.stringify(allDecks));
+        //console.log("publish called, results reterune: "+allDecks.length);
+        for(var i=0;i<allDecks.length;i++){
+            //console.log("deck: "+deck.name);
+            //console.log("deck: "+JSON.stringify(allDecks[i]));
+            CArchetype.insert(allDecks[i]);
+        }
        //TODO: Make call to kimono/firelab to get data based off the link
        /*       var currentArch = ""
            //Make call to kimono and get all generic top8 info
@@ -46,7 +55,7 @@ else {
                         //console.log("name"+deckTypes[i].deck.html+"url"+deckTypes[i].deck.href);
                     }
            });*/
-        return Archetype.find({});
+        return CArchetype.find({});
     });
     console.log("server getting data: " + currentArch);
 }
