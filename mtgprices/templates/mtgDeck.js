@@ -25,14 +25,15 @@ if (Meteor.isClient) {
 else {
     Meteor.publish("deckSub",function(link) {
         //console.log("looking at name: "+link);
-        link = "http://mtgtop8.com/event?e=11630&d=266244&f=MO"; //hard coded example
+        link = "http://mtgtop8.com/event?e=11615&d=266108&f=MO"; //hard coded example
 
         CDeck.remove({});
         var allDecks = Decks.find({link:link}).fetch();
 
         //Should only return 1
-        //console.log("Got back this many decks for query: "+allDecks.length);
+        console.log("Got back this many decks for query: "+allDecks.length);
         var deck = allDecks[0];
+        console.log("Json: " + JSON.stringify(allDecks));
         for(var i=0;i<deck.cards.length;i++){
             //console.log("c:"+deck.cards[i].name);
             CDeck.insert(deck.cards[i]);

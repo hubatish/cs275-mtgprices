@@ -11,7 +11,6 @@ getCardPrice = function(cardName, callback) {
                   {},
                   function(err, response) {
                       if (err) {
-                          //console.log(err);
                           console.log("Product not found: " + cardName);
                           callback(0);
                           return;
