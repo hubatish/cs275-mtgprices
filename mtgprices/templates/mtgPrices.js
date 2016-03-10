@@ -123,4 +123,4 @@ else {
     Meteor.publish("mtgPricesSubscribe", function() {
         return Archetypes.find({});
     });
-}
+  }
