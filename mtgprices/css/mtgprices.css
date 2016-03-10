@@ -17,29 +17,20 @@ body {
   font-size: 14px;
 }
 
-.container {
-  max-width: none;
-  margin: 0 auto;
-  min-height: 100px;
-}
-
-.container .head {
+.container .jumbotron .head {
   font-family: 'elementarygothic';
-  font-size: 20px;
+  font-size: 2em;
   min-height: inherit;
   max-width: inherit;
+  text-align: center;
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 20px;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 30;
-  background: #eee
+  background: #eee;
 }
 
-.container .sub {
-  padding: 10px;
+.container .jumbotron .sub {
+  padding-top: 20px;
 }
 
 .container .body {
@@ -53,14 +44,56 @@ body {
   background: white;
 }
 
-.nav {
-  margin-left: 20px;
-  margin-right: 20px;
-  min-height: 100px;
-  max-width: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 30;
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row .content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row .content {height:auto;}
+}
+
+@media all and (max-width: 2000px) {
+  body { font-size: 1.8em; }
+}
+
+@media all and (max-width: 1300px) {
+  body { font-size: 1.5em; }
+}
+
+@media all and (max-width: 1200px) {
+  body { font-size: 1.3em; }
+}
+
+@media all and (max-width: 800px) {
+  body { font-size: 0.8em; }
+}
+
+@media all and (max-width: 500px) {
+  body { font-size: 0.6em; }
 }
 
 header {

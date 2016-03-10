@@ -1,7 +1,3 @@
-Router.route('/mtgprices', function() {
-    this.render('mtgprices', {});
-});
-
 //This will contain {name: ' ', link: ' ', avg price: '$$', decks: [unique id for each deck]}
 Archetypes = new Mongo.Collection("archetypes") //contains the deck archetypes
 
