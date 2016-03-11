@@ -5,9 +5,6 @@
 <body></body>
 
 <template name="mtgSDeck">
-    <div class="nav">
-        {{> Nav}}
-    </div>
 <br>
     <div class="container">
         <div class="body">
@@ -15,14 +12,11 @@
             <h1>Deck: </h1>
         </header>
 
-        <ul>
+        <div class="deck-list">
             {{#each deckGetC}}
-                <li>{{name}}</li>
+                {{number}} {{name}}
             {{/each}}
-        </ul>
+        </div>
     </div>
     </div>
-</template>
-
-<template name="deckName">
 </template>

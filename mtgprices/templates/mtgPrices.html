@@ -6,20 +6,24 @@
 
 <template name="mtgprices">
     <div class="container">
-        <div class="body">
-            <header>
-                <h1>Deck Archetypes</h1>
-            </header>
-
-            <ul>
+        <div class="jumbotron">
+            <div class="head">
+              Deck Archetypes
+            </div>
+          <hr>
+          <div class="container">
+            <div class="row">
                 {{#each archetypes}}
                     {{> archetype1}}
                 {{/each}}
-            </ul>
+            </div>
+          </div>
         </div>
     </div>
 </template>
 
 <template name="archetype1">
-    <li><a href="/mtgSArch/{{url}}">{{name}}</a></li>
+    <div class="col-xs-6 col-sm-4 col-md-3">
+      <a href="/mtgSArch/{{name}}" class="btn btn-link" role="button">{{name}}</a>
+    </div>
 </template>
