@@ -15,8 +15,7 @@ if (Meteor.isClient) {
 }
 else {
     var listOfArchetypes = Archetypes.find({}).fetch();
-    //if (listOfArchetypes.length == 0) { //TODO: Check this based on date
-    if (true) { //TODO: Check this based on date
+    if (listOfArchetypes.length == 0) { //TODO: Check this based on date
         Decks.remove({});
         Archetypes.remove({});
 
