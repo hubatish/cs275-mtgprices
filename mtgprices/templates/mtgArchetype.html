@@ -2,29 +2,40 @@
     <title>Archetype: </title>
 </head>
 
-<body></body>
+<body>
+</body>
 
 <template name="deckNArch">
-    {{>yield "mtgDecksTemp"}}
-    {{>yield "mtgArchsTemp"}}
-</template>
-
-<template name="mtgSArch">
-<br>
-    <div class="container">
-        <div class="body">
-        <header>
-            <h1>Archetype: </h1>
-        </header>
-        <div class="row">
-            {{#each archGetD}}
-                {{> deckName}}
-            {{/each}}
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-9">
+                {{>yield "mtgDecksTemp"}}
+            </div>
+            <div class="col-sm-3 sidenav">
+                {{>yield "mtgArchsTemp"}}
+                <h4>Archetype: </h4>
+                <ul class="nav nav-pills nav-stacked pre-scrollable">
+                    {{#each archGetD}}
+                        {{> deckName}}
+                    {{/each}}
+                </ul><br>
+            </div>
         </div>
-      </div>
     </div>
 </template>
 
+<template name="mtgSArch">
+            <h4>Archetype: </h4>
+              <ul class="nav nav-pills nav-stacked pre-scrollable">
+                {{#each archGetD}}
+                  {{> deckName}}
+                {{/each}}
+              </ul>
+    <br>
+</template>
+
 <template name="deckName">
-    <div class="col-md-4"><a href="/mtgSDeck/{{_id}}">{{name}}</a></div>
+    <li>
+      <a href="/mtgSArch/{{parent}}/{{_id}}" class="btn btn-link" role="btn">{{name}}</a>
+    </li>
 </template>

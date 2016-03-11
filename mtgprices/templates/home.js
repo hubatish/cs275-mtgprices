@@ -16,15 +16,16 @@ Router.map(function () {
     waitOn: function(){
         console.log("Route waiting on mtgsarch");
         console.log("Deck? "+this.params.deck);
+        //if this.params.deck == 'd'
+        //auto-fill in first deck
         return [Meteor.subscribe('archSub', this.params.link),Meteor.subscribe('deckSub', this.params.deck)];
     }
   });
-    this.route('/mtgSDeck/:link', {
-        // Route takes a single parameter
-        name: 'mtgSDeck',
-        waitOn: function() {
-            Meteor.subscribe('deckSub', this.params.link);
-            return;
-        }
-    });
+  this.route('/mtgSDeck/:link', {
+          // Route takes a single parameter
+          name: 'mtgSDeck',
+          waitOn: function() {
+              return Meteor.subscribe('deckSub', this.params.link);
+          }
+  });
 });

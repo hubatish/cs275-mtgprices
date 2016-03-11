@@ -22,6 +22,8 @@ else {
         console.log("publish called, results reterune: "+allDecks.length);
         for(var i=0;i<allDecks.length;i++){
             //console.log("deck: "+deck.name);
+            //hack in reference to current arch
+            allDecks[i].parent = link;
             CArchetype.insert(allDecks[i]);
         }
 
