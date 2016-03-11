@@ -1,10 +1,3 @@
-Router.route('/mtgSDeck/:link', {
-        // Route takes a single parameter
-        name: 'mtgSDeck',
-        waitOn: function() {
-            return Meteor.subscribe('deckSub', this.params.link);
-        }
-});
 
 //purely for getting info to the client on this page
 CDeck = new Mongo.Collection("CDeck")
@@ -36,10 +29,6 @@ else {
         for(var i=0;i<deck.cards.length;i++){
             //console.log("c:"+deck.cards[i].name);
             CDeck.insert(deck.cards[i]);
-        }
-        if(Meteor.isClient){
-            console.log("IA m client & publsihign?? ");
-            tappedOut();
         }
         return CDeck.find({});
     });
