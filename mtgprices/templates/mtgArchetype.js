@@ -28,7 +28,7 @@ else {
         CArchetype.remove({});
         //Archetype.insert({"hello":"more" + link});
         //console.log("looking at name: "+link);
-        var allDecks = Decks.find({name:link}).fetch();
+        var allDecks = Decks.find({nameEncoded: encodeURIComponent(link)}).fetch();
         //console.log("uh.. returend: "+JSON.stringify(allDecks));
         //console.log("publish called, results reterune: "+allDecks.length);
         for(var i=0;i<allDecks.length;i++){

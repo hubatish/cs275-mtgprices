@@ -24,11 +24,11 @@ if (Meteor.isClient) {
 }
 else {
     Meteor.publish("deckSub",function(link) {
-        //console.log("looking at name: "+link);
-        link = "http://mtgtop8.com/event?e=11630&d=266244&f=MO"; //hard coded example
+        //console.log("looking at deck link: "+link);
+        //link = "http://mtgtop8.com/event?e=11630&d=266244&f=MO"; //hard coded example
 
         CDeck.remove({});
-        var allDecks = Decks.find({link:link}).fetch();
+        var allDecks = Decks.find({_id: String(link)}).fetch();
 
         //Should only return 1
         //console.log("Got back this many decks for query: "+allDecks.length);
