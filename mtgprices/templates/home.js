@@ -11,4 +11,11 @@ Router.map(function () {
       return Meteor.subscribe('archSub', this.params.link);
     }
   });
+  this.route('/mtgSDeck/:link', {
+          // Route takes a single parameter
+          name: 'mtgSDeck',
+          waitOn: function() {
+              return Meteor.subscribe('deckSub', this.params.link);
+          }
+  });
 });

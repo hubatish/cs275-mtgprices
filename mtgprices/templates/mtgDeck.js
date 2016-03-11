@@ -1,11 +1,3 @@
-Router.route('/mtgSDeck/:link', {
-        // Route takes a single parameter
-        name: 'mtgSDeck',
-        waitOn: function() {
-            return Meteor.subscribe('deckSub', this.params.link);
-        }
-});
-
 //purely for getting info to the client on this page
 CDeck = new Mongo.Collection("CDeck")
 
