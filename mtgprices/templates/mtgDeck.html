@@ -5,18 +5,18 @@
 <body></body>
 
 <template name="mtgSDeck">
-<br>
-    <div class="container">
-        <div class="body">
-        <header>
-            <h1>Deck: </h1>
-        </header>
+  <div class="container body jumbotron">
+            <h2>Deck:</h2>
+            <hr>
+            <div class="deck-list">
+              {{#each deckGetC}}
+                  {{price}}
+                  {{number}} {{name}}
+              {{/each}}
+            </div>
+          </div>
+</template>
 
-        <div class="deck-list">
-            {{#each deckGetC}}
-                {{number}} {{name}}
-            {{/each}}
-        </div>
-    </div>
-    </div>
+<template name="cardInfo">
+    {{number}} {{name}}
 </template>

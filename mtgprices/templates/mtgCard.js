@@ -4,14 +4,23 @@ getCardPrice = function(cardName, callback) {
     //TODO: cache this card in a database & return it if it exists
     var matchingCards = Cards.find({name:cardName}).fetch();
     if (matchingCards.length == 0) {
-        //TODO: Parse out spaces from name, replace with %20
+        //TODO: Parse out problem characters
+        cardName = cardName.replace("/","//"); //Wear / Tear -> Wear // Tear
+        cardName = cardName.replace(decodeURIComponent('%C3%86'),"Ae"); //Æther Vial -> Aether Vial
+
         var baseURL = "http://partner.tcgplayer.com/x3/phl.asmx/p?pk=JOHNWANG&s=&p=";
 
         HTTP.call('GET', baseURL + cardName,//"Flameborn%20Viron",
                   {},
                   function(err, response) {
                       if (err) {
+<<<<<<< HEAD
                           console.log("Product not found: " + cardName);
+=======
+                          //console.log(err);
+                          console.log("Error, Product not found, inserting: " + cardName);
+                          Cards.insert({name:cardName, price:0});
+>>>>>>> 784fba8d9c426c81de9c77578d165b8a39567779
                           callback(0);
                           return;
                       }

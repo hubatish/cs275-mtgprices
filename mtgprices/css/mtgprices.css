@@ -17,8 +17,7 @@ body {
   font-size: 14px;
 }
 
-.container .jumbotron .head {
-  font-family: 'elementarygothic';
+.jumbotron .head {
   font-size: 2em;
   min-height: inherit;
   max-width: inherit;
@@ -29,19 +28,26 @@ body {
   background: #eee;
 }
 
-.container .jumbotron .sub {
+.jumbotron .sub {
   padding-top: 20px;
 }
 
+.jumbotron .container {
+  font-family: sans-serif;
+}
+
 .container .body {
-  margin: inherit;
-  min-height: inherit;
+  min-width: none;
   max-width: 100%;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 50px;
-  background: white;
+  background: #e5e5e5;
+}
+
+.jumbotron {
+    font-family: 'elementarygothic';
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */
@@ -63,14 +69,20 @@ body {
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row .content {
-  height: 450px;
+  height: 1500px;
+}
+
+.nav .nav-pills .nav-stacked .pre-scrollable {
+  max-height: 800px;
 }
 
 /* Set gray background color and 100% height */
 .sidenav {
-  padding-top: 20px;
-  background-color: #f1f1f1;
+
+  background-color: #e5e5e5;
+  padding-top: 10px;
   height: 100%;
+  border-radius: 5px;
 }
 
 /* Set black background color, white text and some padding */
@@ -85,6 +97,7 @@ footer {
   .sidenav {
     height: auto;
     padding: 15px;
+    margin: 15px;
   }
   .row .content {height:auto;}
 }
