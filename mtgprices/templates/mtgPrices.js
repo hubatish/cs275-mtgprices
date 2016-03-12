@@ -78,7 +78,8 @@ else {
                                 console.log("Finilizing to the output");
                               });
                             }
-                          });                    
+                          });
+                        }
                     })();
                 }
             }), function (errorObject) {
