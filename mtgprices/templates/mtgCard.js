@@ -6,7 +6,7 @@ getCardPrice = function(cardName, callback) {
     if (matchingCards.length == 0) {
         //TODO: Parse out problem characters
         cardName = cardName.replace("/","//"); //Wear / Tear -> Wear // Tear
-        cardName = cardName.replace(decodeURIComponent('%C3%86'),"Ae"); //Æther Vial -> Aether Vial
+        cardName = cardName.replace(decodeURIComponent('%C3%86'),"Ae"); //ï¿½ther Vial -> Aether Vial
 
         var baseURL = "http://partner.tcgplayer.com/x3/phl.asmx/p?pk=JOHNWANG&s=&p=";
 
@@ -14,13 +14,9 @@ getCardPrice = function(cardName, callback) {
                   {},
                   function(err, response) {
                       if (err) {
-<<<<<<< HEAD
-                          console.log("Product not found: " + cardName);
-=======
                           //console.log(err);
                           console.log("Error, Product not found, inserting: " + cardName);
                           Cards.insert({name:cardName, price:0});
->>>>>>> 784fba8d9c426c81de9c77578d165b8a39567779
                           callback(0);
                           return;
                       }
