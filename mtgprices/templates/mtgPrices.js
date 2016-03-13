@@ -134,13 +134,11 @@ else {
                         name: deckName,
                         nameEncoded: deckNameEncoded,
                         link: deckLink,
-                        //cards: [name of cards]
-                        //avg price: $$
                     },
                     { upsert: true }
                 );
-                console.log("d - inserting: " + deckName + ", " + deckNameEncoded + ", "
-                            + deckLink + ", " + deckID);
+                //console.log("d - inserting: " + deckName + ", " + deckNameEncoded + ", "
+                //            + deckLink + ", " + deckID);
             }
             populateCards();
         }), function(errorObject){
