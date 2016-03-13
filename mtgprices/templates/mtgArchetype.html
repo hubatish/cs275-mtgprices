@@ -13,7 +13,6 @@
             </div>
             <div class="col-sm-3 sidenav">
                 {{>yield "mtgArchsTemp"}}
-                <h4>Archetype: </h4>
                 <ul class="nav nav-pills nav-stacked pre-scrollable">
                     {{#each archGetD}}
                         {{> deckName}}
@@ -25,7 +24,7 @@
 </template>
 
 <template name="mtgSArch">
-            <h4>Archetype: </h4>
+            <h4>Other similar decks: </h4>
               <ul class="nav nav-pills nav-stacked pre-scrollable">
                 {{#each archGetD}}
                   {{> deckName}}
