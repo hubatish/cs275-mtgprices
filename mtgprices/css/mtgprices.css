@@ -4,6 +4,8 @@ body {
   background-color: #315481;
   background-image: url('/assets/woodbg.jpg');
   background-attachment: fixed;
+  font-family: 'aaarghnormal';
+  font-weight: bold;
 
   position: absolute;
   top: 0;
@@ -26,14 +28,22 @@ body {
   margin-right: 20px;
   margin-bottom: 20px;
   background: #eee;
+  font-family: 'amerikaregular';
 }
 
 .jumbotron .sub {
   padding-top: 20px;
+  font-family: 'aaarghnormal';
+  font-weight: bold;
 }
 
-.jumbotron .container {
-  font-family: sans-serif;
+.container .jumbotron {
+  font-family: 'aaarghnormal';
+  font-weight: bold;
+}
+
+.jumbotron .title {
+  font-family: 'amerikaregular';
 }
 
 .container .body {
@@ -46,10 +56,6 @@ body {
   background: #e5e5e5;
 }
 
-.jumbotron {
-    font-family: 'elementarygothic';
-}
-
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
   border-color: #777;
@@ -57,14 +63,32 @@ body {
   background-image: url('/assets/wood_study_3_by_devin_busha.jpg');
 }
 
+.navbar-brand {
+  position: absolute;
+  left: 50%;
+  margin-left: -50px !important;
+  display: block;
+  padding: 0px;
+}
+
+.navbar-brand > img {
+  height: 225%;
+  padding: -15px;
+  width: auto;
+}
+
 .navbar .navbar-nav {
   background-image: url('/assets/scratched_steel_texture_by_aarondesign.jpg');
   background-repeat: repeat;
-  font-family: 'elementarygothic';
+  background-size: cover;
+  background-position: center;
+  font-family: 'amerikaregular';
+  padding: 0px;
 }
 
 .navbar .navbar-nav > li > a {
-  color: #333;
+  color: #222;
+  font-size: 20px;
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
