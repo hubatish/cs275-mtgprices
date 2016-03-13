@@ -1,13 +1,8 @@
-Router.route('/mtgSDeck/:link', {
-        // Route takes a single parameter
-        name: 'mtgSDeck',
-        waitOn: function() {
-            return Meteor.subscribe('deckSub', this.params.link);
-        }
-});
-
 //purely for getting info to the client on this page
 CDeck = new Mongo.Collection("CDeck")
+Price = new Mongo.Collection("Price")
+CName = new Mongo.Collection("CName")
+
 
 if (Meteor.isClient) {
     // This code only runs on the client
@@ -15,6 +10,15 @@ if (Meteor.isClient) {
         deckGetC: function() {
             console.log("Getting decks");
             return CDeck.find({});
+        },
+        deckGetPrice: function() {
+          return Price.findOne();
+        },
+        deckGetName: function() {
+          return CName.findOne();
+        },
+        deckGetCPrice: function(){
+          return CPrice.findOne();
         }
     });
     Template.mtgSDeck.onRendered(function () {
@@ -24,23 +28,36 @@ if (Meteor.isClient) {
 }
 else {
     Meteor.publish("deckSub",function(link) {
+        //console.log("looking at name: "+link);
         //console.log("looking at deck link: "+link);
-        //link = "http://mtgtop8.com/event?e=11630&d=266244&f=MO"; //hard coded example
+
+        if(link=='d'){
+            //should get first deck automatically
+            return [CDeck.find({}), Price.find(), CName.find()];
+        }
+
 
         CDeck.remove({});
+        Price.remove({});
+        CName.remove({});
         var allDecks = Decks.find({_id: String(link)}).fetch();
 
         //Should only return 1
-        //console.log("Got back this many decks for query: "+allDecks.length);
+        //console.log("Got back this many decks for query: "+allDecks.length + "from link: "+link);
         var deck = allDecks[0];
+
+        CName.insert({deckName: deck.name});
+        Price.insert({price: deck.totalprice});
+
         for(var i=0;i<deck.cards.length;i++){
-            //console.log("c:"+deck.cards[i].name);
+            var nameofCard = deck.cards[i].name;
+            //console.log("c:"+nameofCard);
+            var price = _.pluck(Cards.find({name: nameofCard}).fetch(), 'price');
+            //console.log("P:"+price[1]);
+            deck.cards[i].price = price[1];
+            console.log(deck.cards[i]);
             CDeck.insert(deck.cards[i]);
         }
-        if(Meteor.isClient){
-            console.log("IA m client & publsihign?? ");
-            tappedOut();
-        }
-        return CDeck.find({});
+        return [CDeck.find({}), Price.find(), CName.find()];
     });
 }

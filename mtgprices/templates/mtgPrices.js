@@ -1,4 +1,4 @@
-//This will contain {name: ' ', link: ' ', avg price: '$$', decks: [unique id for each deck]}
+//This w//This will contain {name: ' ', link: ' ', avg price: '$$', decks: [unique id for each deck]}
 Archetypes = new Mongo.Collection("archetypes") //contains the deck archetypes
 
 //contains {name: ' ', link: ' ', total price: ' ', cards:[card names]}
@@ -94,7 +94,7 @@ else {
                     },
                     { upsert: true }
                 );
-                // console.log("a - inserting: " + archetypeName + ", " + archetypeNameEncoded + ", " + archetypeLink + ", " + archetypeID);
+                console.log("a - inserting: " + archetypeName + ", " + archetypeNameEncoded + ", " + archetypeLink + ", " + archetypeID);
             }
         }), function(errorObject){
             console.log("The read failed: " + errorObject.code);

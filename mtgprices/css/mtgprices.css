@@ -4,6 +4,8 @@ body {
   background-color: #315481;
   background-image: url('/assets/woodbg.jpg');
   background-attachment: fixed;
+  font-family: 'aaarghnormal';
+  font-weight: bold;
 
   position: absolute;
   top: 0;
@@ -17,8 +19,7 @@ body {
   font-size: 14px;
 }
 
-.container .jumbotron .head {
-  font-family: 'elementarygothic';
+.jumbotron .head {
   font-size: 2em;
   min-height: inherit;
   max-width: inherit;
@@ -27,21 +28,32 @@ body {
   margin-right: 20px;
   margin-bottom: 20px;
   background: #eee;
+  font-family: 'amerikaregular';
 }
 
-.container .jumbotron .sub {
+.jumbotron .sub {
   padding-top: 20px;
+  font-family: 'aaarghnormal';
+  font-weight: bold;
+}
+
+.container .jumbotron {
+  font-family: 'aaarghnormal';
+  font-weight: bold;
+}
+
+.jumbotron .title {
+  font-family: 'amerikaregular';
 }
 
 .container .body {
-  margin: inherit;
-  min-height: inherit;
+  min-width: none;
   max-width: 100%;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 50px;
-  background: white;
+  background: #e5e5e5;
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */
@@ -49,28 +61,53 @@ body {
   border-color: #777;
   border-style: solid;
   background-image: url('/assets/wood_study_3_by_devin_busha.jpg');
+  color: #222;
+}
+
+.navbar-brand {
+  position: absolute;
+  left: 50%;
+  margin-left: -50px !important;
+  display: block;
+  padding: 0px;
+}
+
+.navbar-brand > img {
+  height: 225%;
+  padding: -15px;
+  width: auto;
 }
 
 .navbar .navbar-nav {
   background-image: url('/assets/scratched_steel_texture_by_aarondesign.jpg');
   background-repeat: repeat;
-  font-family: 'elementarygothic';
+  background-size: cover;
+  background-position: center;
+  font-family: 'amerikaregular';
+  padding: 0px;
 }
 
 .navbar .navbar-nav > li > a {
-  color: #333;
+  color: #222;
+  font-size: 20px;
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row .content {
-  height: 450px;
+  height: 1500px;
+}
+
+.nav .nav-pills .nav-stacked .pre-scrollable {
+  max-height: 800px;
 }
 
 /* Set gray background color and 100% height */
 .sidenav {
-  padding-top: 20px;
-  background-color: #f1f1f1;
+
+  background-color: #e5e5e5;
+  padding-top: 10px;
   height: 100%;
+  border-radius: 5px;
 }
 
 /* Set black background color, white text and some padding */
@@ -85,6 +122,7 @@ footer {
   .sidenav {
     height: auto;
     padding: 15px;
+    margin: 15px;
   }
   .row .content {height:auto;}
 }

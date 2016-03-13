@@ -1,22 +1,24 @@
-<head>
-    <title>Deck: </title>
+<head>g
+    <title>Deck</title>
 </head>
 
 <body></body>
 
 <template name="mtgSDeck">
-<br>
-    <div class="container">
-        <div class="body">
-        <header>
-            <h1>Deck: </h1>
-        </header>
-
-        <div class="deck-list">
-            {{#each deckGetC}}
+  <div class="container body jumbotron">
+            <div class="title">
+              <h2>Deck: {{deckGetName.deckName}}</h2>
+            </div>
+            <h3>Deck Price: ${{deckGetPrice.price}} </h3>
+            <hr>
+            <div class="deck-list">
+              {{#each deckGetC}}
                 {{number}} {{name}}
-            {{/each}}
-        </div>
-    </div>
-    </div>
+              {{/each}}
+            </div>
+          </div>
+</template>
+
+<template name="cardInfo">
+    {{number}} {{name}}
 </template>
