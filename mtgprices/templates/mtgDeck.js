@@ -16,6 +16,9 @@ if (Meteor.isClient) {
         },
         deckGetName: function() {
           return CName.findOne();
+        },
+        deckGetCPrice: function(){
+          return CPrice.findOne();
         }
     });
     Template.mtgSDeck.onRendered(function () {
@@ -47,7 +50,12 @@ else {
         Price.insert({price: deck.totalprice});
 
         for(var i=0;i<deck.cards.length;i++){
-            //console.log("c:"+deck.cards[i].name);
+            var nameofCard = deck.cards[i].name;
+            //console.log("c:"+nameofCard);
+            var price = _.pluck(Cards.find({name: nameofCard}).fetch(), 'price');
+            //console.log("P:"+price[1]);
+            deck.cards[i].price = price[1];
+            console.log(deck.cards[i]);
             CDeck.insert(deck.cards[i]);
         }
         return [CDeck.find({}), Price.find(), CName.find()];
