@@ -58,8 +58,8 @@ else {
                         {
                             $set: {
                                 cards: cardArray,
-                                totalprice: totalPrice,
-                                avgprice: avgPrice
+                                totalprice: Number(totalPrice),
+                                avgprice: Number(avgPrice)
                             }
                         }
                     );

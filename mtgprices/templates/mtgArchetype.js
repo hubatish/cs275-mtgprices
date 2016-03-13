@@ -7,7 +7,7 @@ if (Meteor.isClient) {
         archGetD: function() {
             console.log("Getting arch d");
             //console.log("param sfrom archd: "+this.getParams());
-            return CArchetype.find({});
+            return CArchetype.find({}, { sort: { totalprice: 1 } });
         }
     });
 }
